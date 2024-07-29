@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'header.html' %}
+
+<div class="text-center m-5">
+    <h3>Select Resume Templates for Your Dream Job in 2024</h3>
+    <p class="py-3">Get hired faster with our HR-approved resume templates. Pick a resume template, add ready-made content from Certified Professional Resume Writers, and have a resume ready in no time.</p>
+</div>
+
+<div>
+    <div>
+        <p class="text-center">Click on any template to select and enter your details</p>
+        <div class="container">
+            {% for temp in temps %}
+                {% if forloop.counter0|divisibleby:2 %}
+                    <div class="row text-center">
+                {% endif %}
+                <div class="col border border-dark m-4">
+                    <a href="{% url 'userdetailform' temp.TempName %}">
+                        <img src="{% static 'images/' %}{{ temp.thumbnail }}" class="img-fluid" alt="Thumbnail">
+                    </a>
+                    <a href="{% url 'userdetailform' temp.TempName %}">
+                        <h3>{{ temp.TempName }}</h3>
+                    </a>
+                    <h5 class="text-dark">{{ temp.Description }}</h5>
+                </div>
+                {% if forloop.counter|divisibleby:2 or forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% if not temps %}
+                <h2 class="text-center text-danger">No templates available at this time!!!</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/Bootstrap5.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Fontawsome.css' %}">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel='stylesheet' href="{% static 'css/login.css' %}">
+    <script src="{% static 'js/Bootstrap_JQuery.js' %}"></script>
+    <script src="{% static 'js/Bootstrap_Popper.js' %}"></script>
+    <script src="{% static 'js/Bootstrap5.js' %}"></script>
+    <script src="{% static 'js/FontAwsome.js' %}"></script>
+</head>
+
+
+<body>
+    <div>
+        {% if messages %}
+        <ul class="alert alert-info alert-dismissible fade show px-4">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                {% endif %}
+    </div>
+
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form method="post">
+                    {% csrf_token %}
+                    <h2>Login</h2>
+                    <div class="inputbox"> <ion-icon name="mail-outline"></ion-icon> <input id="email" name="email"
+                            type="email" required>
+                        <label>Email</label>
+                    </div>
+                    <div class="inputbox"> <ion-icon name="lock-closed-outline"></ion-icon> <input id="password"
+                            name="password" type="password" required> <label>Password</label> </div>
+                    <button type="submit">Log In</button>
+                    <div class="register">
+                        <p>Don't have an account? <a href="/signup">SignUp</a></p>
+                    </div>
+                </form>
+                <div class="register">
+                    <p>Wann'a go back? <a href="{% url 'public' %}">Home</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+
+</html>

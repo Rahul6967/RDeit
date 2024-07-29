@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title>Template6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            border: 1px solid black;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .job-title {
+            font-weight: bold;
+        }
+
+        .location-date {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .major-accomplishments {
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+
+        .education {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="alert alert-info" role="alert">
+        <div class="d-flex">
+            <div class="pb-2 col sm-6 text-end">
+                <a href="{% url 'select_template' %}"><button type="button" class="btn btn-outline-danger">Go
+                        Back</button></a>
+            </div>
+            <div class="ms-3 pb-2 col sm-6 text-start">
+                <button onclick="myfun('mn')" type="button" class="btn btn-outline-success">Download</button></a>
+            </div>
+        </div>
+        <p class="text-center">Please remove Header & Footer from 'more settings' in download window</p>
+    </div>
+
+    <div id="mn" class="container">
+        <header>
+            <h1>{{ userdata.fullname }}</h1>
+            <h2>{{ userdata.role }}</h2>
+            <p>{{ userdata.email }} | (+91){{ userdata.phoneno }} </p>
+            <p>{{ userdata.address }} | {{ userdata.dateofbirth }} | {{ userdata.gender }}</p>
+        </header>
+        <hr>
+        <section>
+
+            <div class="job">
+                <div class="location-date">
+                    <span class="job-title">Profile</span>
+                </div>
+                <p>{{ userdata.profile }}
+            </div>
+            <div>
+                <h2 class="job-title">Employment History</h2>
+                <div class="job mt-3">
+                    <div class="location-date">
+                        <span class="job-title">{{ userdata.experience1 }}</span>
+                    </div>
+                    <p>{{ userdata.description1 }}
+                </div>
+                <div class="job">
+                    <div class="location-date">
+                        <span class="job-title">{{ userdata.experience2 }}</span>
+                    </div>
+                    <p>{{ userdata.description2 }}
+                </div>
+            </div>
+
+        </section>
+        <section>
+            <h2 class="job-title">EDUCATION HISTORY</h2>
+            <div class="education">
+                <p>     {{ userdata.education1 }}:      {{ userdata.institute1 }}</p>
+            </div>
+            <div class="education">
+                <p>     {{ userdata.education2 }}:      {{ userdata.institute2 }}</p>
+            </div>
+            <div class="education">
+                <p>     {{ userdata.education3 }}:      {{ userdata.institute3 }}</p>
+            </div>
+        </section>
+        <section>
+            <h2>Skills</h2>
+            <div class="education">
+                <ul>
+                    <li>{{ userdata.skill1 }}</li>
+                    <li>{{ userdata.skill2 }}</li>
+                    <li>{{ userdata.skill3 }}</li>
+                    <li>{{ userdata.skill4 }}</li>
+                    <li>{{ userdata.skill5 }}</li>
+                    <li>{{ userdata.skill6 }}</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script type="text/javascript">
+        function myfun(pa) {
+            var b = document.body.innerHTML;
+            var d = document.getElementById(pa).innerHTML;
+            document.body.innerHTML = d;
+            window.print();
+        }
+
+    </script>
+</body>
+
+</html>

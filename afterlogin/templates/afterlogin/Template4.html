@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title>Template4</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            width: 900px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sidebar {
+            background-color: #004d40;
+            color: white;
+            width: 30%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .sidebar img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar h1,
+        .sidebar p {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .sidebar h1 {
+            font-size: 24px;
+        }
+
+        .sidebar p {
+            font-size: 14px;
+        }
+
+        .sidebar .section {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .section h2 {
+            font-size: 16px;
+            border-bottom: 1px solid #ffffff;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar .section ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar .section ul li span.stars {
+            color: #FFD700;
+        }
+
+        .content {
+            width: 70%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .content .section {
+            margin-bottom: 20px;
+        }
+
+        .content .section h2 {
+            font-size: 18px;
+            border-bottom: 2px solid #004d40;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        .content .section ul {
+            padding-left: 20px;
+        }
+
+        .content .section ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="alert alert-info" role="alert">
+        <div class="d-flex">
+            <div class="pb-2 col sm-6 text-end">
+                <a href="{% url 'select_template' %}"><button type="button" class="btn btn-outline-danger">Go
+                        Back</button></a>
+            </div>
+            <div class="ms-3 pb-2 col sm-6 text-start">
+                <button onclick="myfun('mn')" type="button" class="btn btn-outline-success">Download</button></a>
+            </div>
+        </div>
+        <p class="text-center">Please remove Header & Footer from 'more settings' in download window</p>
+    </div>
+    <form id="mn">
+    <div class="container">
+        <div class="sidebar">
+            <h1>{{ userdata.fullname }}</h1>
+            <p>{{ userdata.role }}</p>
+            <div class="section">
+                <h2>Details</h2>
+                <p>{{ userdata.address }}</p>
+                <p>Phone:(+91){{ userdata.phoneno }}<br>Email:{{ userdata.email }}</p>
+                <p>Date of Birth: {{ userdata.dateofbirth }}<br>Gender: {{ userdata.gender }}</p>
+            </div>>
+            <div class="section">
+                <h2>Skills</h2>
+                <ul>
+                    <li>{{ userdata.skill1 }}</li>
+                    <li>{{ userdata.skill2 }}</li>
+                    <li>{{ userdata.skill3 }}</li>
+                    <li>{{ userdata.skill4 }}</li>
+                    <li>{{ userdata.skill5 }}</li>
+                    <li>{{ userdata.skill6 }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="content">
+            <div class="section">
+                <h2>Profile</h2>
+                <p>{{ userdata.profile }}
+            </div>
+            <div class="section">
+                <h2>Employment History</h2>
+                <h3>{{ userdata.experience1 }}</h3>
+                <p><em>{{ userdata.description1 }}</em></p>
+                <h3>{{ userdata.experience2 }}</h3>
+                <p><em>{{ userdata.description2 }}</em></p>
+            </div>
+            <div class="section">
+                <h2>{{ userdata.education1 }}</h2>
+                <h3>{{ userdata.institute1 }}</h3>
+            </div>
+            <div class="section">
+                <h2>{{ userdata.education2 }}</h2>
+                <h3>{{ userdata.institute2 }}</h3>
+            </div>
+            <div class="section">
+                <h2>{{ userdata.education3 }}</h2>
+                <h3>{{ userdata.institute3 }}</h3>
+            </div>
+        </div>
+    </div>
+</form>
+    <script type="text/javascript">
+        function myfun(pa) {
+            var b = document.body.innerHTML;
+            var d = document.getElementById(pa).innerHTML;
+            document.body.innerHTML = d;
+            window.print();
+        }
+
+    </script>
+</body>
+
+</html>

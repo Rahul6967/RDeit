@@ -1,0 +1,11 @@
+a.nav-link{
+    color: whitesmoke;
+}
+a.nav-link:hover{
+    color: whitesmoke;
+    font-weight: bold;
+}
+a.nav-link.active{
+    color: whitesmoke;
+    font-weight: bolder;
+}
